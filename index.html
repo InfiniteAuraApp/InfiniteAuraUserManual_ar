@@ -1,0 +1,1619 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>دليل المستخدم — Infinite Aura</title>
+
+  <!-- App / Site Icon (Infinite Aura) -->
+  <link rel="apple-touch-icon" sizes="180x180" href="https://infiniteauraapp.github.io/InfiniteAuraPrivacyPoclicy_en/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://infiniteauraapp.github.io/InfiniteAuraPrivacyPoclicy_en/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://infiniteauraapp.github.io/InfiniteAuraPrivacyPoclicy_en/favicon-16x16.png">
+  <link rel="shortcut icon" href="https://infiniteauraapp.github.io/InfiniteAuraPrivacyPoclicy_en/favicon.ico">
+
+  <meta name="theme-color" content="#0b0c10">
+  <meta name="msapplication-TileColor" content="#0b0c10">
+
+  <style>
+    :root{
+      --bg: #0b0c10;
+      --surface: rgba(255,255,255,.05);
+      --surface2: rgba(255,255,255,.08);
+      --text: rgba(255,255,255,.93);
+      --muted: rgba(255,255,255,.72);
+      --border: rgba(255,255,255,.12);
+      --accent: #7c5cff;
+      --accent2: #25d366;
+      --shadow: 0 16px 40px rgba(0,0,0,.35);
+      --radius: 18px;
+      --max: 1120px;
+
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+
+      --pad: clamp(14px, 1.6vw, 22px);
+      --gap: clamp(12px, 1.4vw, 18px);
+    }
+
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg: #f6f7fb;
+        --surface: rgba(0,0,0,.045);
+        --surface2: rgba(0,0,0,.065);
+        --text: rgba(0,0,0,.92);
+        --muted: rgba(0,0,0,.64);
+        --border: rgba(0,0,0,.12);
+        --shadow: 0 14px 34px rgba(0,0,0,.12);
+      }
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    html{ scroll-behavior:smooth; }
+
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      line-height: 1.9;
+      background:
+        radial-gradient(900px 650px at 15% -10%, rgba(124,92,255,.30), transparent 60%),
+        radial-gradient(800px 600px at 100% 10%, rgba(37,211,102,.16), transparent 60%),
+        var(--bg);
+    }
+
+    a{ color: var(--accent); text-decoration:none; }
+    a:hover{ text-decoration:underline; }
+
+    :focus-visible{
+      outline: 3px solid rgba(124,92,255,.55);
+      outline-offset: 3px;
+      border-radius: 12px;
+    }
+
+    .skip{
+      position:absolute;
+      top:-60px;
+      left:16px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      padding:10px 12px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      transition: top .2s ease;
+      z-index: 50;
+    }
+    .skip:focus{ top: 14px; }
+
+    .wrap{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 24px 16px 70px;
+    }
+
+    header.hero{
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 8px);
+      background: linear-gradient(135deg, rgba(124,92,255,.22), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      padding: calc(var(--pad) + 6px);
+      position: relative;
+      overflow: hidden;
+    }
+    header.hero::after{
+      content:"";
+      position:absolute;
+      inset:-60px -70px auto auto;
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.26), transparent 55%);
+      transform: rotate(18deg);
+      pointer-events:none;
+      filter: blur(.2px);
+    }
+
+    .brand{
+      display:flex;
+      gap: 14px;
+      align-items:flex-start;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .brand h1{
+      margin: 0;
+      font-size: clamp(22px, 2.6vw, 36px);
+      letter-spacing: .2px;
+      line-height: 1.25;
+    }
+
+    .meta{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items:center;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .pill{
+      display:inline-flex;
+      gap: 8px;
+      align-items:center;
+      padding: 7px 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255,255,255,.03);
+      white-space: nowrap;
+      backdrop-filter: blur(8px);
+    }
+
+    .btnRow{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items:center;
+      margin-top: 4px;
+    }
+
+    button{
+      font-family: inherit;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      backdrop-filter: blur(8px);
+    }
+    button:hover{
+      background: rgba(255,255,255,.08);
+      border-color: rgba(255,255,255,.18);
+      transform: translateY(-1px);
+    }
+    button:active{ transform: translateY(0); }
+
+    .muted{ color: var(--muted); }
+    .small{ font-size: 13px; color: var(--muted); }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: var(--gap);
+      margin-top: var(--gap);
+      align-items:start;
+    }
+    @media (min-width: 980px){
+      .grid{ grid-template-columns: 360px 1fr; }
+    }
+
+    .card{
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    .card-h{
+      padding: 14px 14px 12px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,.02);
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .card-h h2{
+      margin: 0;
+      font-size: 16px;
+      color: var(--text);
+      letter-spacing: .2px;
+    }
+
+    .card-b{ padding: 14px; }
+
+    .tocWrap{
+      position: relative;
+    }
+
+    @media (min-width: 980px){
+      .tocWrap{
+        position: sticky;
+        top: 18px;
+        max-height: calc(100vh - 36px);
+        overflow: auto;
+        scrollbar-width: thin;
+      }
+    }
+
+    .toc a{
+      display:flex;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      color: var(--text);
+      border: 1px solid transparent;
+      transition: background .12s ease, border-color .12s ease, transform .12s ease;
+    }
+    .toc a:hover{
+      background: var(--surface2);
+      border-color: var(--border);
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+    .toc a.active{
+      background: rgba(124,92,255,.16);
+      border-color: rgba(124,92,255,.35);
+      box-shadow: 0 0 0 4px rgba(124,92,255,.10) inset;
+    }
+
+    main article{ padding: 16px; }
+
+    .prose{
+      max-width: 78ch;
+      margin-inline: auto;
+      padding-bottom: 4px;
+    }
+
+    details.policy-sec{
+      padding: 10px 0;
+      border-bottom: 1px dashed var(--border);
+      scroll-margin-top: 96px;
+    }
+    details.policy-sec:last-child{
+      border-bottom: none;
+      padding-bottom: 6px;
+    }
+
+    details.policy-sec > summary{
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+
+      padding: 12px 12px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      transition: background .12s ease, transform .12s ease, border-color .12s ease;
+    }
+
+    details.policy-sec > summary:hover{
+      background: var(--surface2);
+      border-color: rgba(255,255,255,.18);
+      transform: translateY(-1px);
+    }
+
+    details.policy-sec > summary::-webkit-details-marker{ display:none; }
+
+    details.policy-sec > summary .title{
+      font-size: clamp(18px, 1.5vw, 20px);
+      font-weight: 800;
+      line-height: 1.35;
+      letter-spacing: .15px;
+      margin: 0;
+    }
+
+    details.policy-sec > summary::after{
+      content: "▾";
+      font-size: 18px;
+      opacity: .8;
+      transform: translateY(-1px);
+      transition: transform .14s ease;
+    }
+
+    details.policy-sec[open] > summary{
+      background: rgba(124,92,255,.10);
+      border-color: rgba(124,92,255,.35);
+      box-shadow: 0 0 0 4px rgba(124,92,255,.10) inset;
+      transform: none;
+    }
+
+    details.policy-sec[open] > summary::after{
+      transform: rotate(180deg);
+    }
+
+    details.policy-sec .sec-body{
+      padding: 12px 4px 6px;
+    }
+
+    h3{
+      margin: 0 0 10px;
+      font-size: clamp(18px, 1.5vw, 20px);
+      line-height: 1.35;
+      letter-spacing: .15px;
+    }
+
+    p{ margin: 0 0 10px; }
+
+    /* RTL-friendly lists */
+    ul,ol{
+      margin: 10px 0;
+      padding: 0 18px 0 0;
+    }
+    li{ margin: 8px 0; }
+
+    code{
+      font-family: var(--mono);
+      font-size: 0.92em;
+      padding: 2px 6px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      direction: ltr;
+      unicode-bidi: plaintext;
+    }
+
+    .callout{
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      border-radius: 16px;
+      padding: 12px 14px;
+      margin: 12px 0;
+    }
+    .callout strong{ display:block; margin-bottom: 6px; }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      font-size: 13px;
+      margin: 4px 6px 4px 0;
+      white-space: nowrap;
+    }
+    .badge i{
+      width: 10px; height: 10px; border-radius: 999px; display:inline-block;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(124,92,255,.16);
+    }
+    .badge.ok i{ background: #25d366; box-shadow: 0 0 0 4px rgba(37,211,102,.15); }
+    .badge.warn i{ background: #ffb020; box-shadow: 0 0 0 4px rgba(255,176,32,.15); }
+    .badge.bad i{ background: #ff4d4f; box-shadow: 0 0 0 4px rgba(255,77,79,.15); }
+
+    .prose details:not(.policy-sec){
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: rgba(255,255,255,.03);
+      padding: 10px 12px;
+      margin: 12px 0;
+    }
+    .prose details[open]:not(.policy-sec){
+      background: rgba(255,255,255,.04);
+    }
+    .prose details:not(.policy-sec) > summary{
+      cursor:pointer;
+      font-weight: 700;
+      color: var(--text);
+      list-style: none;
+    }
+    .prose details:not(.policy-sec) > summary::-webkit-details-marker{ display:none; }
+
+    .hr{
+      height: 1px;
+      background: var(--border);
+      margin: 12px 0;
+    }
+
+    .footer{
+      margin-top: var(--gap);
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      font-size: 14px;
+      backdrop-filter: blur(10px);
+    }
+
+    .tocMobile{ display:none; }
+    @media (max-width: 979px){
+      .tocMobile{ display:block; margin-top: var(--gap); }
+      .tocDesktop{ display:none; }
+      main article{ padding: 14px; }
+    }
+
+    @media print{
+      body{ background:#fff; color:#000; }
+      .card, header.hero, .footer{ box-shadow:none; }
+      a{ color:#000; text-decoration: underline; }
+      .btnRow, .skip{ display:none; }
+      .tocDesktop{ display:none; }
+      .tocMobile{ display:none; }
+      .prose{ max-width: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      html{ scroll-behavior:auto; }
+      button, .toc a{ transition:none; }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip" href="#content">تخطي إلى المحتوى</a>
+
+  <div class="wrap">
+    <header class="hero">
+      <div class="brand">
+        <div>
+          <h1>دليل المستخدم — Infinite Aura</h1>
+          <div class="meta">
+            <span class="pill">آخر تحديث: <strong id="lastUpdated">ديسمبر 26, 2025</strong></span>
+            <span class="pill">نسخة الدليل: <strong>v1</strong></span>
+          </div>
+        </div>
+
+        <div class="btnRow">
+          <button type="button" onclick="window.print()">طباعة / حفظ PDF</button>
+          <button type="button" onclick="toggleAll(true)">فتح كل الأقسام</button>
+          <button type="button" onclick="toggleAll(false)">إغلاق كل الأقسام</button>
+        </div>
+      </div>
+
+      <p class="muted" style="margin-top:12px">
+        هذا الدليل يشرح <strong>خطوة بخطوة</strong> كيفية استخدام أهم الشاشات والميزات الفعلية في تطبيق <strong>Infinite Aura</strong>
+        كما هي مطبّقة في المشروع (التسجيل وتوثيق البريد عبر OTP، دليل المراكز والحجز، إدارة الحجوزات للمراكز، النشر في دليل المراكز، الأداء، والأرشفة).
+      </p>
+    </header>
+
+    <!-- Mobile TOC -->
+    <details class="card tocMobile">
+      <summary class="card-h" style="user-select:none">
+        <h2 style="margin:0; font-size:16px">فهرس سريع</h2>
+        <span class="small">اضغط للفتح</span>
+      </summary>
+      <div class="card-b toc" id="tocMobile">
+        <a href="#s1">1) نظرة عامة والأدوار</a>
+        <a href="#s2">2) المتطلبات والأذونات</a>
+        <a href="#s3">3) إنشاء حساب</a>
+        <a href="#s3a">3-A) توثيق البريد عبر OTP</a>
+        <a href="#s3b">3-B) مستندات توثيق المركز</a>
+        <a href="#s4">4) تسجيل الدخول واستعادة كلمة المرور</a>
+        <a href="#s5">5) الأفراد إضافة وإدارة</a>
+        <a href="#s5a">5-A) إنشاء جلسة جديدة</a>
+        <a href="#s5b">5-B) نتائج الجلسة</a>
+        <a href="#s5c">5-C) ولي الأمر: دليل المراكز و طلب حجز</a>
+        <a href="#s5d">5-D) ولي الأمر: متابعة الحجوزات والرد على إعادة الجدولة</a>
+        <a href="#s6">6) المركز: إدارة المركز و العلاقة مع الأرشيف</a>
+        <a href="#s6a">6-A) المركز: صفحة المركز العامة (نشر/إخفاء)</a>
+        <a href="#s7">7) المركز: إدارة الحجوزات (الموافقة/رفض/إعادة الجدولة)</a>
+        <a href="#s8">8) المركز: شاشة الأداء (الأداء)</a>
+        <a href="#s9">9) المركز: الأرشيف</a>
+        <a href="#s10">10) المشرف: إدارة المراكز والتحقق</a>
+        <a href="#s11">11) المشرف الفرعي: إدارة المراكز حسب الدولة</a>
+        <a href="#s12">12) الإشعارات</a>
+        <a href="#s13">13) حلول سريعة ودعم</a>
+      </div>
+    </details>
+
+    <div class="grid">
+      <!-- Desktop TOC -->
+      <aside class="card tocDesktop">
+        <div class="card-h">
+          <h2>فهرس سريع</h2>
+          <span class="small">اضغط للانتقال</span>
+        </div>
+        <div class="card-b toc tocWrap" id="toc">
+          <a href="#s1">1) نظرة عامة والأدوار</a>
+          <a href="#s2">2) المتطلبات والأذونات</a>
+          <a href="#s3">3) إنشاء حساب</a>
+          <a href="#s3a">3-A) توثيق البريد عبر OTP</a>
+          <a href="#s3b">3-B) مستندات توثيق المركز</a>
+          <a href="#s4">4) تسجيل الدخول واستعادة كلمة المرور</a>
+          <a href="#s5">5) الأفراد إضافة وإدارة</a>
+          <a href="#s5a">5-A) إنشاء جلسة جديدة</a>
+          <a href="#s5b">5-B) نتائج الجلسة</a>
+          <a href="#s5c">5-C) ولي الأمر: دليل المراكز و طلب حجز</a>
+          <a href="#s5d">5-D) ولي الأمر: متابعة الحجوزات والرد على إعادة الجدولة</a>
+          <a href="#s6">6) المركز: إدارة المركز و الأرشيف</a>
+          <a href="#s6a">6-A) المركز: صفحة المركز العامة (نشر/إخفاء)</a>
+          <a href="#s7">7) المركز: إدارة الحجوزات (موافقة/رفض/إعادة الجدولة)</a>
+          <a href="#s8">8) المركز: شاشة الأداء</a>
+          <a href="#s9">9) المركز: الأرشيف</a>
+          <a href="#s10">10) المشرف: إدارة المراكز والتحقق</a>
+          <a href="#s11">11) المشرف الفرعي: إدارة المراكز حسب الدولة</a>
+          <a href="#s12">12) الإشعارات</a>
+          <a href="#s13">13) حلول سريعة ودعم</a>
+        </div>
+      </aside>
+
+      <!-- CONTENT -->
+      <main class="card" id="content">
+        <div class="card-h">
+          <h2>نص الدليل</h2>
+        </div>
+
+        <article>
+          <div class="prose">
+
+            <!-- ===================== MANUAL SECTIONS (Accordion) ===================== -->
+
+            <details class="policy-sec" id="s1">
+              <summary><span class="title">1) نظرة عامة والأدوار</span></summary>
+              <div class="sec-body">
+                <p>
+                  تطبيق <strong>Infinite Aura</strong> يدعم إدارة الحسابات والتواصل بين الأطراف (ولي أمر / مركز / مدرب / إدارة).
+                  بعض الميزات تظهر حسب <strong>الدور</strong> داخل الحساب.
+                </p>
+
+                <p>
+                  <span class="badge"><i></i>ولي أمر</span>
+                  <span class="badge"><i></i>مركز</span>
+                  <span class="badge"><i></i>مدرب</span>
+                  <span class="badge"><i></i>مشرف / مشرف فرعي</span>
+                </p>
+
+                <div class="callout">
+                  <strong>معلومة مهمة</strong>
+                  <p class="muted" style="margin:0">
+                    حسابات <strong>المراكز</strong> تستخدم حالة توثيق داخل النظام مثل:
+                    <code>حالة التوثيق اما ان تكون قيد المراجعة / تم الموافقة  / رفض  </code>.
+                    عند الرفض قد يُطلب إعادة رفع المستندات حسب الإعدادات الإدارية.
+                  </p>
+                </div>
+              </div>
+            </details>
+
+            <details class="policy-sec" id="s2">
+              <summary><span class="title">2) المتطلبات والأذونات</span></summary>
+              <div class="sec-body">
+                <ol>
+                  <li>ثبّت التطبيق على Android.</li>
+                  <li>اختر اللغة من داخل التطبيق (العربية/الإنجليزية/الإسبانية/الفرنسية/الهندية/الصينية).</li>
+                  <li>أذونات قد تظهر حسب استخدامك:
+                    <ul>
+                      <li><strong>الإشعارات</strong>: لاستلام تحديثات الحجوزات.</li>
+                      <li><strong>الموقع</strong> (للمراكز): لتعبئة رابط Google Maps تلقائياً عند إنشاء صفحة مركز عامة.</li>
+                    </ul>
+                  </li>
+                </ol>
+
+                <details>
+                  <summary>متى أحتاج إذن الموقع؟</summary>
+                  <div class="hr"></div>
+                  <p class="muted">
+                    فقط إذا ضغطت داخل صفحة المركز العامة على خيار <strong>استخدام الموقع الحالي</strong> لتعبئة رابط خرائط جوجل.
+                    يمكنك أيضاً لصق رابط Maps يدوياً بدون إذن.
+                  </p>
+                </details>
+              </div>
+            </details>
+
+            <details class="policy-sec" id="s3">
+              <summary><span class="title">3) إنشاء حساب</span></summary>
+              <div class="sec-body">
+                <p><span class="badge"><i></i>من شاشة التسجيل</span></p>
+                <ol>
+                  <li>افتح شاشة <strong>تسجيل مستخدم جديد</strong>.</li>
+                  <li>أدخل البيانات الأساسية:
+                    <ul>
+                      <li>الاسم (اسم ولي الأمر أو اسم المركز حسب نوع الحساب).</li>
+                      <li>البريد الإلكتروني.</li>
+                      <li>كلمة المرور.</li>
+                      <li>اختيار <strong>الدولة / رمز الدولة</strong> (مهم خصوصاً لحسابات المراكز).</li>
+                    </ul>
+                  </li>
+                  <li>اختر نوع الحساب:
+                    <ul>
+                      <li><strong>ولي امر</strong> (ولي أمر).</li>
+                      <li><strong>مركز</strong> (مركز) — يتطلب مستندات توثيق (انظر القسم 3-B).</li>
+                    </ul>
+                  </li>
+                  <li>قم بـ <strong>توثيق البريد عبر OTP</strong> أولاً (انظر القسم 3-A).</li>
+                  <li>بعد نجاح OTP، اضغط <strong>تسجيل</strong> لإكمال إنشاء الحساب.</li>
+                </ol>
+
+                <div class="callout">
+                  <strong>ملاحظة</strong>
+                  <p class="muted" style="margin:0">
+                    التطبيق يمنع إكمال التسجيل إذا لم يتم توثيق البريد عبر OTP (زر التسجيل يبقى غير مفعّل حتى نجاح OTP).
+                  </p>
+                </div>
+              </div>
+            </details>
+
+            <details class="policy-sec" id="s3a">
+              <summary><span class="title">3-A) توثيق البريد عبر OTP (مستخدم في التسجيل و تسجيل الدخول)</span></summary>
+              <div class="sec-body">
+                <p>
+                  النظام يستخدم كود OTP (6 أرقام) يتم إرساله للبريد الإلكتروني.
+                  نفس فكرة OTP تُستخدم أيضاً قبل تسجيل الدخول (زيادة أمان).
+                </p>
+
+                <ol>
+                  <li>اكتب بريدك الإلكتروني بشكل صحيح.</li>
+                  <li>اضغط زر <strong>Send OTP</strong>.</li>
+                  <li>تحقق من بريدك (Inbox / Spam) وستجد كود من 6 أرقام.</li>
+                  <li>سيظهر لك Dialog بعنوان <strong>تحقق من الايميل</strong>:
+                    <ul>
+                      <li>اكتب الكود (6 أرقام).</li>
+                      <li>اضغط <strong>تحقق</strong>.</li>
+                      <li>إذا الكود خطأ/منتهي: تظهر رسالة “Invalid or expired code”.</li>
+                    </ul>
+                  </li>
+                  <li>عند النجاح: يتم إغلاق النافذة وتُعتبر عملية التوثيق ناجحة.</li>
+                </ol>
+
+                <details>
+                  <summary>مشاكل شائعة مع OTP</summary>
+                  <div class="hr"></div>
+                  <ul>
+                    <li>لم يصل الكود: انتظر دقيقة، وافحص Spam، وتأكد أن البريد صحيح.</li>
+                    <li>الكود لا يعمل: أعد الإرسال وخذ آخر كود وصل فقط.</li>
+                    <li>لا تغلق نافذة OTP قبل التحقق، لأن العملية تُعتبر ملغاة.</li>
+                  </ul>
+                </details>
+              </div>
+            </details>
+
+            <details class="policy-sec" id="s3b">
+              <summary><span class="title">3-B) مستندات توثيق المركز (مركز فقط)</span></summary>
+              <div class="sec-body">
+                <p>
+                  عند اختيار نوع الحساب <strong>مركز</strong>، سيطلب منك التطبيق رفع مستندات إثبات/ترخيص المركز.
+                  هذه المستندات تُستخدم لقرار الإدارة (الموافقة / الرفض).
+                </p>
+
+                <ol>
+                  <li>في شاشة التسجيل، بعد اختيار <strong>Center</strong> ستجد قسم <strong>مستندات توثيق المركز</strong>.</li>
+                  <li>اضغط زر رفع المستندات واختر الملفات من جهازك.</li>
+                  <li>القيود المعتمدة داخل التطبيق:
+                    <ul>
+                      <li>الأنواع المقبولة عادة: PDF / صور (حسب اختيار الملفات في جهازك).</li>
+                      <li>الحد الأقصى للملف: <strong>50 MB</strong> لكل ملف.</li>
+                    </ul>
+                  </li>
+                  <li>بعد الرفع: تظهر لك قائمة الملفات المختارة/المرفوعة.</li>
+                  <li>أكمل التسجيل بعد نجاح OTP.</li>
+                </ol>
+
+                <div class="callout">
+                  <strong>تنبيه</strong>
+                  <p class="muted" style="margin:0">
+                    إذا فشل رفع مستندات المركز أثناء التسجيل، قد يقوم النظام بإلغاء/حذف الحساب الجديد لتجنب إنشاء مركز بدون مستندات.
+                  </p>
+                </div>
+              </div>
+            </details>
+
+            <details class="policy-sec" id="s4">
+              <summary><span class="title">4) تسجيل الدخول واستعادة كلمة المرور</span></summary>
+              <div class="sec-body">
+                <p><span class="badge"><i></i>تسجيل الدخول</span> <span class="badge warn"><i></i>OTP قبل الدخول</span></p>
+
+                <ol>
+                  <li>افتح شاشة <strong>تسجيل الدخول</strong>.</li>
+                  <li>اكتب البريد الإلكتروني وكلمة المرور.</li>
+                  <li>قبل الدخول، ستبدأ خطوة <strong>OTP للبريد</strong>:
+                    <ul>
+                      <li>سيتم إرسال كود لبريدك.</li>
+                      <li>يجب إدخال الكود في Dialog ثم تحقق.</li>
+                    </ul>
+                  </li>
+                  <li>بعد نجاح OTP: يتم تنفيذ تسجيل الدخول بالبريد/كلمة المرور.</li>
+                </ol>
+
+                <details>
+                  <summary>نسيت كلمة المرور؟</summary>
+                  <div class="hr"></div>
+                  <ol>
+                    <li>من شاشة تسجيل الدخول اختر خيار <strong>نسيت كلمة المرور</strong>.</li>
+                    <li>أدخل البريد الإلكتروني.</li>
+                    <li>ستصلك رسالة لإعادة تعيين كلمة المرور.</li>
+                  </ol>
+                  <p class="muted">
+                    (إعادة تعيين كلمة المرور تتم عبر Firebase Auth.)
+                  </p>
+                </details>
+              </div>
+            </details>
+
+            <details class="policy-sec" id="s5">
+              <summary><span class="title">5) الأفراد: إضافة وإدارة</span></summary>
+              <div class="sec-body">
+                <p>
+                  شاشة <strong>الافراد</strong> هي نقطة البداية لإدارة الأفراد داخل المشروع.
+                  منها يمكنك <strong>إضافة فرد</strong>، فتح ملفه، مشاهدة جلساته، ومن (حساب المركز) يمكن أيضاً
+                  <strong>تحديد موعد جلسة قادمة</strong>.
+                </p>
+
+                <p>
+                  <span class="badge"><i></i>قائمة الأفراد</span>
+                  <span class="badge ok"><i></i>إضافة فرد</span>
+                  <span class="badge warn"><i></i>جلسة قادمة</span>
+                </p>
+
+                <h3>أولاً: عرض قائمة الأفراد</h3>
+                <ol>
+                  <li>افتح شاشة <strong>الافراد</strong>.</li>
+                  <li>ستظهر قائمة بالأفراد المسجلين في حسابك.</li>
+                  <li>يمكنك الضغط على بطاقة أي فرد لفتح شاشة <strong>تفاصيل الفرد</strong>.</li>
+                </ol>
+
+                <h3>ثانياً: إضافة فرد جديد</h3>
+                <ol>
+                  <li>من شاشة القائمة اضغط زر <strong>و</strong> أو <strong>اضافة</strong>.</li>
+                  <li>املأ البيانات الأساسية:
+                    <ul>
+                      <li><strong>الاسم الأول</strong> و <strong>الاسم الأخير</strong> (إجباري).</li>
+                      <li><strong>الجنس</strong> (ذكر/أنثى).</li>
+                      <li><strong>تاريخ الميلاد</strong> (اختيار تاريخ الميلاد).</li>
+                      <li><strong>ملاحظات</strong> (اختياري).</li>
+                    </ul>
+                  </li>
+                  <li>(اختياري) أضف صورة للفرد عبر:
+                    <ul>
+                      <li><strong>الكاميرا</strong> أو <strong>المعرض</strong>.</li>
+                    </ul>
+                  </li>
+                  <li>(اختياري) بيانات ولي الأمر:
+                    <ul>
+                      <li><strong>اسم ولي الامر</strong> / <strong>العلاقة</strong> / <strong>ايميل ولي الامر</strong></li>
+                    </ul>
+                  </li>
+                  <li>اضغط <strong>حفظ</strong> لإضافة الفرد وظهوره في القائمة.</li>
+                </ol>
+
+                <div class="callout">
+                  <strong>ملاحظة مرتبطة بالمشروع</strong>
+                  <p class="muted" style="margin:0">
+                    صورة الفرد إن تم رفعها تظهر لاحقاً في شاشة <strong>بروفايل الفرد</strong>، وملف الفرد يُستخدم كأساس لكل الجلسات
+                    الجلسات والنتائج.
+                  </p>
+                </div>
+
+                <h3>ثالثاً: فتح ملف الفرد (تفاصيل الفرد / البروفايل / الحالة)</h3>
+                <ol>
+                  <li>اضغط على بطاقة الفرد من القائمة.</li>
+                  <li>في شاشة <strong>تفاصيل الفرد</strong> ستجد أزرار سريعة مثل:
+                    <ul>
+                      <li><strong>بدء جلسة جديدة</strong>: لبدء جلسة جديدة (انظر 5-A).</li>
+                      <li><strong>مراجعة الحالة</strong>: لعرض الإحصائيات (إن كانت مفعّلة في الحساب).</li>
+                      <li><strong>افتح البروفايل</strong>: لعرض ملف الفرد (المعلومات الأساسية والصورة).</li>
+                    </ul>
+                  </li>
+                  <li>أسفل ذلك تظهر قائمة <strong>الجلسات</strong> السابقة؛ اضغط أي جلسة لفتح <strong>نتائج الجلسة</strong> (انظر 5-B).</li>
+                </ol>
+
+                <details>
+                  <summary>ميزة (حساب مركز): تحديد موعد جلسة قادمة</summary>
+                  <div class="hr"></div>
+                  <p class="muted">
+                    من قائمة الأفراد (عند الدخول بحساب <strong>المركز</strong>) يمكنك استخدام خيار <strong>تحديد موعد الجلسة القادمة</strong>:
+                  </p>
+                  <ol>
+                    <li>اضغط زر <strong>تحديد موعد الجلسة القادمة</strong> على بطاقة الفرد.</li>
+                    <li>اختر <strong>التاريخ</strong> ثم <strong>الوقت</strong>.</li>
+                    <li>اضغط <strong>حفظ</strong>.</li>
+                  </ol>
+                  <p class="muted" style="margin:0">
+                    يتم حفظ الموعد داخل بيانات الفرد كـ <code>الجلسة القادمة في</code>.
+                  </p>
+                </details>
+              </div>
+            </details>
+
+            <details class="policy-sec" id="s5a">
+              <summary><span class="title">5-A) إنشاء جلسة جديدة</span></summary>
+              <div class="sec-body">
+                <p>
+                  شاشة <strong>جلسة جديدة</strong> هي الشاشة الأساسية لعمل جلسة تقييم داخل المشروع.
+                  الجلسة تعتمد على: <strong>صورة</strong> و <strong>إجابات الاستبيان</strong> و (اختياري) <strong>العلاجات</strong> و <strong>الأنشطة</strong>.
+                  عند الحفظ يتم حساب الدرجات ثم فتح شاشة النتائج مباشرة.
+                </p>
+
+                <p>
+                  <span class="badge"><i></i>تحليل الصورة</span>
+                  <span class="badge"><i></i>الاستبيان</span>
+                  <span class="badge bad"><i></i>الأنشطة</span>
+                  <span class="badge ok"><i></i>تحليل وحفظ</span>
+                </p>
+
+                <div class="callout">
+                  <strong>كيف أصل للشاشة؟</strong>
+                  <p class="muted" style="margin:0">
+                    من شاشة <strong>تفاصيل الفرد</strong> اضغط زر <strong>بدء جلسة جديدة</strong>.
+                  </p>
+                </div>
+
+                <h3>أولاً: إضافة صورة للجلسة (مطلوب للتحليل الصوري)</h3>
+                <ol>
+                  <li>اضغط <strong>التقاط صورة</strong>.</li>
+                  <li>اختر مصدر الصورة: <strong>الكاميرا</strong> أو <strong>معرض الصور</strong>.</li>
+                  <li>بعد اختيار الصورة، النظام يقوم بتحليل الصورة.</li>
+                </ol>
+
+                <details>
+                  <summary>ماذا لو لم يتم اكتشاف وجه؟</summary>
+                  <div class="hr"></div>
+                  <p class="muted">
+                    إذا كانت الصورة لا تحتوي وجهاً واضحاً، تظهر رسالة تفيد بعدم وجود وجه.
+                    في هذه الحالة اختر صورة أخرى أو التقط صورة أوضح.
+                  </p>
+                </details>
+
+                <h3>ثانياً: تعبئة الاستبيان (Questionnaire)</h3>
+                <ol>
+                  <li>ستجد قائمة أسئلة داخل الجلسة.</li>
+                  <li>لكل سؤال اختر درجة من 1 إلى 5:
+                    <ul>
+                      <li><strong>اوافق بشدة</strong> إلى <strong>لا اوافق بشدة</strong></li>
+                    </ul>
+                  </li>
+                  <li>أكمل كل الأسئلة المطلوبة قبل الحفظ للحصول على نتيجة أدق.</li>
+                </ol>
+
+                <h3>ثالثاً: (اختياري) إضافة علاجات للجلسة</h3>
+                <ol>
+                  <li>افتح قسم <strong>العلاجات</strong>.</li>
+                  <li>فعّل العلاج (Switch) لإضافته للجلسة.</li>
+                  <li>لكل علاج يمكن إدخال:
+                    <ul>
+                      <li><strong>الهدف</strong> (هدف الجلسة لهذا العلاج).</li>
+                      <li><strong>الملاحظات</strong> (ملاحظات).</li>
+                      <li><strong>الفعالية</strong> (تقييم 1–5).</li>
+                    </ul>
+                  </li>
+                </ol>
+
+                <h3>رابعاً: إضافة أنشطة للجلسة</h3>
+                <ol>
+                  <li>من قسم <strong>الانشطة</strong> اختر نشاطاً من القائمة.</li>
+                  <li>حدد:
+                    <ul>
+                      <li><strong>التكرارات لليوم</strong> (عدد مرات تكرار النشاط).</li>
+                      <li><strong>الملاحظات</strong> (ملاحظات اختيارية).</li>
+                    </ul>
+                  </li>
+                  <li>اضغط <strong>اضافة الأنشطة</strong> لإضافته لقائمة أنشطة الجلسة.</li>
+                  <li>يمكن حذف النشاط من القائمة إذا أخطأت.</li>
+                </ol>
+
+                <h3>أخيراً: حفظ الجلسة وفتح النتائج</h3>
+                <ol>
+                  <li>اضغط زر <strong>تحليل</strong>.</li>
+                  <li>يتم حفظ الجلسة مع درجات:
+                    <ul>
+                      <li><strong>نتيجة الصورة</strong></li>
+                      <li><strong>نتيجة الاستبيان</strong></li>
+                      <li><strong>نتيجة الأنشطة</strong></li>
+                      <li><strong>النتيجة الكلية</strong></li>
+                    </ul>
+                  </li>
+                  <li>بعد الحفظ يتم تحويلك تلقائياً إلى شاشة <strong>نتائج الجلسات</strong>.</li>
+                </ol>
+
+                <div class="callout">
+                  <strong>ملاحظة أمنية (مرتبطة بالمشروع)</strong>
+                  <p class="muted" style="margin:0">
+                    صورة الجلسة وإجابات الاستبيان يتم التعامل معها داخل المشروع بطريقة آمنة (تشفير/فك تشفير للمصرح لهم)،
+                    لذلك قد ترى وقت تحميل إضافي بسيط عند فتح النتائج.
+                  </p>
+                </div>
+              </div>
+            </details>
+
+            <details class="policy-sec" id="s5b">
+              <summary><span class="title">5-B) نتائج الجلسة</span></summary>
+              <div class="sec-body">
+                <p>
+                  شاشة <strong>نتائج الجلسات</strong> تعرض تفاصيل الجلسة بعد الحفظ: الدرجات، صورة الجلسة (إن وُجدت)،
+                  وإجابات الاستبيان بشكل <strong>للقراءة فقط</strong>، بالإضافة إلى العلاجات والأنشطة المسجلة داخل الجلسة.
+                </p>
+
+                <p>
+                  <span class="badge"><i></i>النتائج</span>
+                  <span class="badge"><i></i>صورة الجلسة</span>
+                  <span class="badge warn"><i></i>إجابات الاستبيان</span>
+                  <span class="badge ok"><i></i>العلاجات &amp; الأنشطة</span>
+                </p>
+
+                <h3>كيف أفتح نتائج جلسة؟</h3>
+                <ol>
+                  <li>افتح <strong>تفاصيل الفرد</strong>.</li>
+                  <li>من قائمة <strong>الجلسات</strong> اضغط على أي جلسة.</li>
+                  <li>ستفتح شاشة <strong>نتائج الجلسات</strong> مباشرة.</li>
+                </ol>
+
+                <h3>ماذا سترى داخل النتائج؟</h3>
+                <ol>
+                  <li><strong>الجزء العلوي</strong>: وقت/تاريخ الجلسة وملخص سريع.</li>
+                  <li><strong>النتائج</strong>:
+                    <ul>
+                      <li><strong>نتيجة الصورة</strong> و <strong>نتيجة الاستبيان</strong>و <strong>نتيجة الأنشطة</strong> و <strong>النتيجة الكلية</strong> (من 0 إلى 100).</li>
+                    </ul>
+                  </li>
+                  <li><strong>صورة الجلسة</strong> (إن كانت موجودة):
+                    <ul>
+                      <li>تُعرض الصورة داخل النتائج بعد تحميلها وفكها للمصرح له.</li>
+                    </ul>
+                  </li>
+                  <li><strong>اجوبة الاستبيان</strong>:
+                    <ul>
+                      <li>تظهر الإجابات لكل سؤال بقيمة 1–5، مع أيقونة قفل <strong>🔒</strong> لأنها للعرض فقط.</li>
+                    </ul>
+                  </li>
+                  <li><strong>العلاجات</strong>:
+                    <ul>
+                      <li>تظهر العلاجات المضافة للجلسة مع الهدف والملاحظات ودرجة الفعالية.</li>
+                    </ul>
+                  </li>
+                  <li><strong>الانشطة</strong>:
+                    <ul>
+                      <li>تظهر الأنشطة مع <strong>التكرارات/يوم</strong> والملاحظات (إن وجدت).</li>
+                    </ul>
+                  </li>
+                </ol>
+
+                <details>
+                  <summary>لماذا أحياناً لا تظهر صورة الجلسة؟</summary>
+                  <div class="hr"></div>
+                  <ul>
+                    <li class="muted">قد تكون الجلسة محفوظة بدون صورة.</li>
+                    <li class="muted">أو يوجد تأخير أثناء التحميل/فك التشفير.</li>
+                    <li class="muted">أو الحساب الحالي ليس ضمن الصلاحيات التي تملك مفتاح/إذن العرض (حسب منطق المشاركة داخل المشروع).</li>
+                  </ul>
+                </details>
+
+                <div class="callout">
+                  <strong>ارتباط النتائج بالشاشات الأخرى</strong>
+                  <p class="muted" style="margin:0">
+                    نتائج الجلسة مرتبطة مباشرة بـ <strong>تفاصيل الفرد</strong> (قائمة الجلسات)،
+                    ويمكن استخدامها لاحقاً في <strong>الحالة</strong> وملخصات الأداء حسب ما هو مفعّل في الحساب.
+                  </p>
+                </div>
+              </div>
+            </details>
+
+
+            <details class="policy-sec" id="s5c">
+              <summary><span class="title">5-C) ولي الأمر: دليل المراكز و إرسال طلب حجز</span></summary>
+              <div class="sec-body">
+                <p><span class="badge"><i></i>دليل المراكز</span> <span class="badge ok"><i></i>طلبات الحجز</span></p>
+
+                <ol>
+                  <li>افتح شاشة <strong>دليل المراكز</strong>.</li>
+                  <li>اختر الدولة من القائمة، ثم استخدم البحث لتصفية النتائج.</li>
+                  <li>ستظهر بطاقات مراكز تحتوي بيانات عامة منشورة (الوصف/العنوان/الهاتف/الرابط/الخرائط… حسب ما نشره المركز).</li>
+                  <li>اضغط <strong>تواصل</strong> لعرض خيارات التواصل:
+                    <ul>
+                      <li>اتصال.</li>
+                      <li>الموقع (إذا موجود).</li>
+                      <li>Google Maps.</li>
+                    </ul>
+                  </li>
+                  <li>لإرسال طلب حجز: اضغط زر <strong>طلبات الحجز</strong> على بطاقة المركز.</li>
+                  <li>سيظهر لطلب الحجز:
+                    <ul>
+                      <li><strong>الوقت المفضل</strong>: اضغط لاختيار تاريخ ثم وقت.</li>
+                      <li><strong>المدة</strong>: اختر مدة الجلسة: <code>30 / 45 / 60 / 90 / 120</code> دقيقة.</li>
+                      <li><strong>الرسالة</strong>: اكتب تفاصيل ما تحتاجه.</li>
+                    </ul>
+                  </li>
+                  <li>اضغط <strong>ارسال</strong> لإرسال الطلب. الحالة تكون <strong>قيد المراجعة</strong>.</li>
+                </ol>         
+              </div>
+            </details>
+
+            <details class="policy-sec" id="s5d">
+              <summary><span class="title">5-D) ولي الأمر: متابعة الحجوزات والرد على إعادة الجدولة</span></summary>
+              <div class="sec-body">
+                <p><span class="badge"><i></i>حجوزاتي</span> <span class="badge warn"><i></i>يتطلب اجراء</span></p>
+
+                <ol>
+                  <li>افتح شاشة حجوزاتي.</li>
+                  <li>ستجد تبويبات أساسية:
+                    <ul>
+                      <li><strong>قيد المراجعة</strong>: طلبات بانتظار رد المركز.</li>
+                      <li><strong>يتطلب اجراء</strong>: المركز اقترح وقت جديد ويحتاج ردّك.</li>
+                      <li><strong>الموافقة</strong>: مواعيد مؤكدة.</li>
+                    </ul>
+                  </li>
+                  <li>داخل تبويب <strong>يتطلب اجراء</strong>:
+                    <ul>
+                      <li>راجع الوقت المقترح والوقت السابق (إن وُجد).</li>
+                      <li>اضغط <strong>الموافقة</strong> لقبول الموعد الجديد.</li>
+                      <li>أو اضغط <strong>الرفض</strong> لرفض الاقتراح.</li>
+                    </ul>
+                  </li>
+                </ol>
+
+                <details>
+                  <summary>كيف أعرف حالة طلبي بسرعة؟</summary>
+                  <div class="hr"></div>
+                  <ul>
+                    <li><strong>pending</strong>: بانتظار رد المركز.</li>
+                    <li><strong>approved</strong>: تم تثبيت موعد رسمي.</li>
+                    <li><strong>rejected</strong>: تم الرفض وقد يظهر سبب الرفض.</li>
+                    <li><strong>rescheduled</strong>: مركز اقترح وقت جديد ويحتاج موافقتك.</li>
+                  </ul>
+                </details>
+              </div>
+            </details>
+
+            <details class="policy-sec" id="s6">
+              <summary><span class="title">6) المركز: إدارة المركز و الأرشيف</span></summary>
+              <div class="sec-body">
+                <p>
+                  شاشة <strong>إدارة المركز</strong> تُستخدم لمشاركة عناصر من حساب المركز
+                  (مثل <strong>الأفراد/الأطفال</strong> و<strong>العلاجات</strong>) مع حسابات أخرى عبر البريد الإلكتروني
+                  (مثل <strong>ولي أمر</strong> أو <strong>مدرب</strong>)، وتحتوي أيضاً على زر مباشر لفتح <strong>الأرشيف</strong>.
+                </p>
+
+                <p>
+                  <span class="badge"><i></i>جهات المشاركة</span>
+                  <span class="badge"><i></i>الأفراد</span>
+                  <span class="badge"><i></i>العلاجات</span>
+                  <span class="badge ok"><i></i>الأرشيف</span>
+                </p>
+
+                <div class="callout">
+                  <strong>كيف أصل للشاشة؟</strong>
+                  <p class="muted" style="margin:0">
+                    من حساب <strong>مركز</strong>: افتح <strong>البروفايل</strong> ثم من أدوات المركز اختر
+                    <strong>ادارة المركز</strong>.
+                    او من شاشة الترحيب اختر <strong>ادارة المركز</strong>.
+                  </p>
+                </div>
+
+                <h3>أولاً: إضافة حساب/بريد كجهة مشاركة</h3>
+                <ol>
+                  <li>في أعلى الشاشة ستجد قسم <strong>المشاركة مع حسابات</strong>.</li>
+                  <li>أدخل <strong>البريد الإلكتروني</strong> للحساب المطلوب مشاركته.</li>
+                  <li>(اختياري) أدخل <strong>الاسم</strong> لتسهيل التعرف على الحساب داخل القائمة.</li>
+                  <li>اختر <strong>User type</strong>:
+                    <code>ولي الامر / مدرب / مركز / أخرى</code>
+                  </li>
+                  <li>اضغط <strong>حفظ</strong> لحفظ الجهة ضمن قائمة <strong>جهات المشاركة </strong>.</li>
+                </ol>
+
+                <details>
+                  <summary>ملاحظة مهمة عن “تحديد جهة المشاركة”</summary>
+                  <div class="hr"></div>
+                  <p class="muted">
+                    عند الضغط على بطاقة بريد من قائمة <strong>جهات المشاركة</strong> يتم تفعيلها (تصبح محددة)،
+                    ويستخدمها النظام لإظهار أي العناصر <strong>تم المشاركة بالفعل</strong> مع هذه الجهة.
+                    هذا التمييز يظهر بشكل أدق عندما تكون <strong>جهة واحدة فقط</strong> محددة.
+                  </p>
+                </details>
+
+                <h3>ثانياً: البحث والفلترة داخل إدارة المركز</h3>
+                <ol>
+                  <li>استخدم مربع <strong>البحث</strong> لكتابة اسم فرد/علاج أو بريد/اسم الحساب.</li>
+                  <li>اختر أين تريد البحث عبر الفلاتر:
+                    <ul>
+                      <li><strong>الأفراد</strong></li>
+                      <li><strong>العلاجات</strong></li>
+                      <li><strong>البريد/الحسابات</strong></li>
+                    </ul>
+                  </li>
+                  <li>لإلغاء البحث اضغط زر المسح (مسح) داخل حقل البحث.</li>
+                </ol>
+
+                <h3>ثالثاً: مشاركة أطفال/علاجات مع الجهة المحددة</h3>
+                <ol>
+                    <li>من قائمة <strong>جهات المشاركة</strong>: اضغط على البريد المطلوب (ليصبح محدداً).</li>
+                    <li>من قائمة <strong>الأفراد</strong>: حدد الأفراد عبر مربع الاختيار.</li>
+                    <li>من قائمة <strong>العلاجات</strong>: حدد العلاجات عبر مربع الاختيار.</li>
+                    <li>اضغط زر <strong>مشاركة المحددة</strong> لمشاركة العناصر المختارة.</li>
+                  <li>بعد المشاركة:
+                    <ul>
+                      <li>قد يظهر رمز <strong>🔗</strong> بجانب العناصر المشتركة.</li>
+                      <li>وقد تظهر عبارة <strong>مشارك بالفعل</strong> عندما تكون جهة واحدة محددة.</li>
+                    </ul>
+                  </li>
+                </ol>
+
+                <div class="callout">
+                  <strong>شرطان أساسيان قبل الضغط على مشاركة/الغاء المشاركة</strong>
+                  <ul class="muted" style="margin:0; padding-right:18px">
+                    <li>يجب تحديد <strong>جهة مشاركة</strong> أولاً (اختار الهدف اولا).</li>
+                    <li>ويجب تحديد <strong>فرد أو علاج واحد على الأقل</strong> (اختار فرد او علاج واحد على الاقل).</li>
+                  </ul>
+                </div>
+
+                <h3>رابعاً: إلغاء المشاركة (الغاء المشاركة)</h3>
+                <ol>
+                  <li>حدد نفس جهة المشاركة (البريد).</li>
+                  <li>حدد الأفراد/العلاجات المطلوب إلغاء مشاركتها.</li>
+                  <li>اضغط <strong> الغاء مشاركة المحددة</strong>.</li>
+                </ol>
+
+                <h3>خامساً: العلاقة مع شاشة الأرشيف (الارشيف) — من نفس شاشة إدارة المركز</h3>
+                <p class="muted">
+                  في أسفل شاشة <strong>ادارة المركز</strong> يوجد زر مباشر بعنوان <strong>الارشيف</strong> يقوم بفتح
+                  شاشة الأرشيف الخاصة بحساب المركز.
+                </p>
+
+                <ol>
+                  <li>اضغط <strong>Archive</strong> (أيقونة الأرشيف) أسفل الشاشة.</li>
+                  <li>ستنتقل إلى شاشة <strong>Center Archive</strong> التي تعرض الأفراد/العناصر المؤرشفة ضمن حساب المركز.</li>
+                  <li>اضغط على أي عنصر مؤرشف لفتح تفاصيله ثم استعراض <strong>الجلسات المؤرشفة</strong>.</li>
+                  <li>داخل الجلسة المؤرشفة قد تجد زر <strong>Restore</strong> لإعادة الجلسة إلى ملف الفرد الأصلي.</li>
+                  <li>يمكن أيضاً حذف عنصر الأرشيف من القائمة عبر زر الحذف (🗑️) لإزالته من أرشيف المركز.</li>
+                </ol>
+
+                <details>
+                  <summary>ما معنى “استعادة الجلسة” داخل الأرشيف؟</summary>
+                  <div class="hr"></div>
+                  <p class="muted">
+                    خيار <strong>استعادة الجلسة</strong> يعيد الجلسة المؤرشفة من مسار الأرشيف إلى حساب الفرد الأصلي
+                    (حسب المعرّفات المخزنة داخل بيانات الأرشفة)،
+                    وبالتالي تعود الجلسة للظهور ضمن جلسات الفرد بدل الأرشيف.
+                  </p>
+                </details>
+
+              </div>
+            </details>
+
+            <details class="policy-sec" id="s6a">
+              <summary><span class="title">6-A) المركز: صفحة المركز العامة (نشر/اخفاء في دليل المراكز)</span></summary>
+              <div class="sec-body">
+                <p><span class="badge"><i></i>صفحة المركز العامة</span> <span class="badge ok"><i></i>منشور</span></p>
+
+                <ol>
+                  <li>افتح شاشة صفحة المركز العامة.</li>
+                  <li>املأ الحقول المطلوبة:
+                    <ul>
+                        <li><strong>أيام الدوام</strong>: اختر أيام العمل.</li>
+                        <li><strong>ساعات الدوام</strong>: مثال: 9:00 صباحاً - 5:00 مساءً</li>
+                        <li><strong>العنوان</strong>: المدينة/المنطقة/الشارع…</li>
+                        <li><strong>الوصف</strong>: نبذة عن الخدمات.</li>
+                        <li><strong>الهاتف</strong>: رقم تواصل (يفضل بصيغة دولية).</li>
+                        <li><strong>رابط خرائط جوجل</strong>: رابط الخرائط (إجباري هنا).</li>
+                        <li><strong>الموقع الإلكتروني</strong>: اختياري (يجب أن يكون رابط صحيح http/https).</li>
+                    </ul>
+                  </li>
+                  <li>لتعبئة رابط الخرائط تلقائياً:
+                    <ul>
+                      <li>اضغط زر <strong>استخدام الموقع الحالي</strong>.</li>
+                      <li>امنح إذن الموقع إن طُلب.</li>
+                      <li>سيتم إنشاء رابط Maps بصيغة بحث بالإحداثيات.</li>
+                    </ul>
+                  </li>
+                  <li>خيارات الحفظ:
+                    <ul>
+                      <li><strong>منشور</strong>: نشر الصفحة في دليل المراكز (يجعلها مرئية للجمهور داخل التطبيق).</li>
+                      <li><strong>حفظ كمسودة</strong>: حفظ بدون نشر (تبقى مخفية).</li>
+                      <li><strong>اخفاء</strong>: إلغاء النشر (إخفاء من الدليل).</li>
+                    </ul>
+                  </li>
+                </ol>
+
+                <div class="callout">
+                  <strong>ملاحظة</strong>
+                  <p class="muted" style="margin:0">
+                    حالة الصفحة (منشورة / مخفية) تظهر في أعلى الشاشة، ويمكن تحديث البيانات حتى وهي منشورة.
+                  </p>
+                </div>
+              </div>
+            </details>
+
+            <details class="policy-sec" id="s7">
+              <summary><span class="title">7) المركز: إدارة الحجوزات (الموافقة / الرفض / إعادة الجدولة)</span></summary>
+              <div class="sec-body">
+                <p><span class="badge"><i></i>ادارة الحجوزات</span> <span class="badge warn"><i></i>الطلبات</span></p>
+
+                <ol>
+                  <li>افتح شاشة <strong>ادارة الحجوزات</strong>.</li>
+                  <li>ستجد تبويبات:
+                    <ul>
+                      <li><strong>الطلبات</strong>: طلبات جديدة أو طلبات إعادة جدولة بانتظار ولي الأمر.</li>
+                      <li><strong>الجدولة</strong>: الحجوزات المعتمدة (الموافقة) مرتبة حسب وقت الموعد.</li>
+                    </ul>
+                  </li>
+
+                  <li>في تبويب <strong>الطلبات</strong> (للطلبات قيد المراجعة):
+                    <ul>
+                      <li>افتح الطلب لعرض التفاصيل (المرسل/الرسالة/الوقت المفضل/المدة).</li>
+                      <li>اختر الإجراء:
+                        <ul>
+                          <li><strong>الموافقة</strong>: اختر تاريخ/وقت نهائي و مدة، ثم تأكيد.</li>
+                          <li><strong>إعادة الجدولة</strong>: اقتراح وقت جديد يحتاج ولي الأمر للقبول او الرفض.</li>
+                          <li><strong>الرفض</strong>: اكتب سبب الرفض ثم تأكيد.</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <li>في تبويب <strong>الجدولة</strong>:
+                    <ul>
+                      <li>تظهر المواعيد المؤكدة مع الوقت والمدة.</li>
+                      <li>يمكن تنفيذ <strong>إعادة الجدولة</strong> للحجز من الجدول أيضاً (اقتراح وقت جديد).</li>
+                    </ul>
+                  </li>
+                </ol>
+
+                <details>
+                  <summary>ما الذي يحدث عند “إعادة الجدولة”؟</summary>
+                  <div class="hr"></div>
+                  <p class="muted">
+                    المركز يضع وقتاً مقترحاً جديداً، ويصبح الطلب بحالة <code>إعادة الجدولة</code>،
+                    وولي الأمر يجب أن يضغط القبول أو الرفض من تبويب بحاجة إلى إجراء.
+                  </p>
+                </details>
+              </div>
+            </details>
+
+            <details class="policy-sec" id="s8">
+              <summary><span class="title">8) المركز: شاشة الأداء</span></summary>
+              <div class="sec-body">
+                <p><span class="badge"><i></i>الاداء</span> <span class="badge"><i></i>التحليلات</span></p>
+
+                <ol>
+                  <li>افتح شاشة <strong>أداء المركز</strong>.</li>
+                  <li>ستظهر بطاقات ملخصة مثل:
+                    <ul>
+                      <li>درجة أداء المركز (0–100).</li>
+                      <li>إجمالي الأفراد/الأطفال.</li>
+                      <li>إجمالي الجلسات (والجلسات آخر 30/90 يوم).</li>
+                      <li>جلسات قادمة خلال 7 أيام.</li>
+                      <li>عدد الأفراد بدون جلسات، أو بدون موعد قادم.</li>
+                    </ul>
+                  </li>
+                  <li>يمكن تغيير <strong>الفلتر الزمني</strong> (الكل / آخر 30 / آخر 90) لعرض جزء من البيانات.</li>
+                </ol>
+              </div>
+            </details>
+
+            <details class="policy-sec" id="s9">
+              <summary><span class="title">9) المركز: الأرشيف</span></summary>
+              <div class="sec-body">
+                <p><span class="badge"><i></i>الأرشيف</span> <span class="badge warn"><i></i>ازالة/الافراد المؤرشفين</span></p>
+                <p class="muted">
+                  يمكنك الوصول إلى شاشة <strong>الأرشيف</strong> مباشرة من شاشة <strong>ادارة المركز</strong> عبر زر الأرشيف أسفل الصفحة.
+                </p>
+
+                <ol>
+                  <li>افتح شاشة <strong>الأرشيف</strong>.</li>
+                  <li>ستظهر قائمة بالأفراد المؤرشفين (إذا يوجد).</li>
+                  <li>كل عنصر يعرض:
+                    <ul>
+                      <li>اسم الفرد (إن كان محفوظاً في بيانات الأرشيف).</li>
+                      <li>من أي حساب تم أرشفته (اسم/إيميل إن توفر).</li>
+                      <li>تاريخ الأرشفة.</li>
+                    </ul>
+                  </li>
+                  <li>إجراءات:
+                    <ul>
+                      <li>اضغط على العنصر لفتح جلسات الأرشيف لذلك الفرد.</li>
+                      <li>زر الحذف (🗑️) يحذف وثيقة الأرشيف من القائمة.</li>
+                    </ul>
+                  </li>
+                </ol>
+
+                <details>
+                  <summary>استرجاع جلسة من الأرشيف</summary>
+                  <div class="hr"></div>
+                  <p class="muted">
+                    النظام يحتوي منطق لاسترجاع جلسة من الأرشيف إلى مكانها الطبيعي تحت الفرد الأصلي
+                    (نسخ بيانات الجلسة والإجابات حسب نوع التخزين/التشفير).
+                  </p>
+                </details>
+              </div>
+            </details>
+            
+            <details class="policy-sec" id="s10">
+            <summary><span class="title">10) المشرف: إدارة المراكز والتحقق</span></summary>
+            <div class="sec-body">
+              <p>
+                حساب <strong>المشرف</strong> داخل مشروع <strong>Infinite Aura</strong> مسؤول عن
+                <strong>مراجعة مراكز جديدة</strong> والتحكم بحالة حساب المركز داخل النظام
+                (توثيق / رفض / تجميد / طلب إعادة رفع مستندات)، لضمان أن المراكز المنشورة في دليل المراكز
+                هي مراكز موثوقة.
+              </p>
+
+              <p>
+                <span class="badge"><i></i>لوحة الإدارة</span>
+                <span class="badge warn"><i></i>توثيق</span>
+                <span class="badge ok"><i></i>موافقة / تجميد</span>
+                <span class="badge bad"><i></i>رفض</span>
+              </p>
+
+              <div class="callout">
+                <strong>كيف أصل للشاشة؟</strong>
+                <p class="muted" style="margin:0">
+                  من حساب <strong>المشرف</strong>: افتح لوحة الإدارة ثم اختر شاشة <strong>مركز المشرف</strong>
+                  (إدارة المراكز).
+                </p>
+              </div>
+
+              <h3>أولاً: فهم حالات المركز داخل المشروع</h3>
+              <ul>
+                <li><code>حالة التوثيق</code>:
+                  <ul>
+                    <li><strong>قيد المراجعة</strong>: مركز جديد بانتظار المراجعة.</li>
+                    <li><strong>موافقة</strong>: مركز موثّق ومسموح له باستخدام ميزات المركز والنشر.</li>
+                    <li><strong>رفض</strong>: مركز مرفوض (قد يُسمح له بإعادة رفع المستندات).</li>
+                  </ul>
+                </li>
+                <li><code>حالة الحساب</code>:
+                  <ul>
+                    <li><strong>فعال</strong>: الحساب فعّال.</li>
+                    <li><strong>مجمّد</strong>: الحساب مجمّد (يُمنع من الوصول لبعض الميزات حسب منطق المشروع).</li>
+                  </ul>
+                </li>
+              </ul>
+
+              <h3>ثانياً: مراجعة مركز جديد</h3>
+              <ol>
+                <li>افتح تبويب/فلتر <strong>قيد المراجعة</strong> لعرض المراكز التي تنتظر التوثيق.</li>
+                <li>اضغط على بطاقة المركز لفتح تفاصيله.</li>
+                <li>راجع البيانات الأساسية:
+                  <ul>
+                    <li>اسم المركز، البريد، الدولة.</li>
+                    <li>مستندات التوثيق المرفوعة.</li>
+                  </ul>
+                </li>
+                <li>اختر الإجراء المناسب:</li>
+              </ol>
+
+              <div class="callout">
+                <strong>الإجراءات الأساسية للمشرف</strong>
+                <ul class="muted" style="margin:0; padding-right:18px">
+                  <li><strong>الموافقة</strong>: اعتماد المركز وتغيير <code>حالة التوثيق</code> إلى <strong>الموافقة</strong>.</li>
+                  <li><strong>رفض</strong>: رفض المركز وتغيير <code>حالة التوثيق</code> إلى <strong>رفض</strong> مع سبب الرفض.</li>
+                  <li><strong>طلب إعادة رفع</strong>: طلب إعادة رفع مستندات التوثيق (يظهر للمركز خيار اعادة رفع).</li>
+                </ul>
+              </div>
+
+              <h3>ثالثاً: تجميد / فك تجميد مركز (تجميد / فك التجميد)</h3>
+              <ol>
+                <li>من بطاقة المركز أو شاشة التفاصيل اضغط <strong>تجميد</strong> لتجميد الحساب.</li>
+                <li>عند التجميد يتحول <code>حالة الحساب</code> إلى <strong>تجميد</strong>.</li>
+                <li>لفك التجميد اضغط <strong>فك التجميد</strong> ليعود <code>حالة الحساب</code> إلى <strong>فعال</strong>.</li>
+              </ol>
+
+              <details>
+                <summary>متى أستخدم تجميد بدل رفض؟</summary>
+                <div class="hr"></div>
+                <ul>
+                  <li class="muted"><strong>رفض</strong>: عادةً لعدم صحة مستندات التوثيق أو نقصها أثناء المراجعة.</li>
+                  <li class="muted"><strong>تجميد</strong>: عند وجود مخالفة أو إيقاف مؤقت بعد أن كان الحساب فعّالاً.</li>
+                </ul>
+              </details>
+
+              <h3>رابعاً: تأثير قرارات المشرف على المستخدمين</h3>
+              <ul>
+                <li class="muted">المركز <strong>الموافقة</strong> يستطيع نشر صفحته في دليل المراكز واستقبال حجوزات.</li>
+                <li class="muted">المركز <strong>رفض</strong> قد تظهر له شاشة رفض مع تعليمات <strong>اعادة رفع المستندات</strong> حسب منطق المشروع.</li>
+                <li class="muted">المركز <strong>تجميد</strong> قد يتم نقله لشاشة تجميد ويُمنع من بعض العمليات حتى فك التجميد.</li>
+              </ul>
+            </div>
+            </details>
+
+            <details class="policy-sec" id="s11">
+              <summary><span class="title">11) المشرف الفرعي: إدارة المراكز حسب الدولة</span></summary>
+              <div class="sec-body">
+                <p>
+                  دور <strong>Sub-admin</strong> في المشروع هو نفس هدف المشرف تقريباً (مراجعة المراكز واتخاذ قرارات)،
+                  لكن بصلاحيات <strong>مقيّدة حسب الدولة</strong>.
+                  أي أن المشرف الفرعي يرى ويتعامل فقط مع المراكز التابعة لدولته.
+                </p>
+
+                <p>
+                  <span class="badge"><i></i>مشرف فرعي</span>
+                  <span class="badge"><i></i>مقيد بالدولة</span>
+                  <span class="badge ok"><i></i>الموافقة / تجميد</span>
+                  <span class="badge warn"><i></i>وصول محدود</span>
+                </p>
+
+                <div class="callout">
+                  <strong>مبدأ الصلاحيات</strong>
+                  <p class="muted" style="margin:0">
+                    يتم تحديد دولة المشرف الفرعي داخل حسابه.
+                    وبناءً عليها تظهر له المراكز ضمن نفس الدولة فقط.
+                  </p>
+                </div>
+
+                <h3>أولاً: ماذا يستطيع المشرف الفرعي أن يفعل؟</h3>
+                <ul>
+                  <li>استعراض قائمة المراكز ضمن دولته (المطلوب الموافقة عليه / الموافقة / رفض / تجميد حسب الفلاتر).</li>
+                  <li>فتح تفاصيل أي مركز ضمن دولته ومراجعة مستندات التوثيق.</li>
+                  <li>تنفيذ:
+                    <ul>
+                      <li><strong> اعتماد المركز</strong></li>
+                      <li><strong> رفض مع سبب</strong></li>
+                      <li><strong> تجميد/فك</strong></li>
+                      <li><strong> طلب إعادة رفع المستندات</strong></li>
+                    </ul>
+                  </li>
+                </ul>
+
+                <h3>ثانياً: ماذا لا يستطيع المشرف الفرعي أن يفعل؟</h3>
+                <ul>
+                  <li class="muted">لا يمكنه إدارة مراكز خارج دولته.</li>
+                  <li class="muted">لا يمكنه تغيير صلاحيات المشرف أو تعيين مشرف فرعي آخر (صلاحيات المشرف فقط).</li>
+                </ul>
+
+                <h3>ثالثاً: خطوات مراجعة مركز طريقة عمل المشرف الفرعي</h3>
+                <ol>
+                  <li>افتح شاشة إدارة المراكز في حساب <strong>المشرف الفرعي</strong>.</li>
+                  <li>اختر فلتر <strong>المطلوب الموافقة علية</strong> لمراجعة المراكز الجديدة ضمن دولتك.</li>
+                  <li>افتح مركزاً ثم راجع المستندات.</li>
+                  <li>اختر قراراً:
+                    <ul>
+                      <li><strong>موافقة</strong> إذا المستندات صحيحة.</li>
+                      <li><strong>رفض</strong> مع السبب إذا يوجد نقص/مخالفة.</li>
+                      <li><strong>طلب اعادة رفع المستندات</strong> إذا المطلوب فقط إعادة رفع أو تحديث مستند.</li>
+                    </ul>
+                  </li>
+                  <li>إذا لزم الأمر استخدم <strong>تجميد</strong> لإيقاف المركز مؤقتاً.</li>
+                </ol>
+
+                <details>
+                  <summary>كيف تنعكس قرارات المشرف الفرعي على المركز؟</summary>
+                  <div class="hr"></div>
+                  <ul>
+                    <li class="muted">تحديث <code>حالة التوثيق</code> و/أو <code>حالة الحساب</code> يظهر للمركز فوراً بعد المزامنة.</li>
+                    <li class="muted">عند <strong>طلب اعادة رفع المستندات</strong> تظهر للمركز تعليمات إعادة رفع المستندات ضمن واجهة المركز.</li>
+                  </ul>
+                </details>
+
+                <div class="callout">
+                  <strong>نصيحة احترافية</strong>
+                  <p class="muted" style="margin:0">
+                    اكتب سبب الرفض أو طلب إعادة الرفع بشكل واضح (مثل: “الترخيص غير واضح” أو “الملف ناقص”)
+                    لتسريع عملية التصحيح وتقليل مراسلات الدعم.
+                  </p>
+                </div>
+              </div>
+            </details>
+
+            <details class="policy-sec" id="s12">
+              <summary><span class="title">12) الإشعارات</span></summary>
+              <div class="sec-body">
+                <p>
+                  التطبيق يستخدم إشعارات (Firebase و إشعارات محلية) لإظهار:
+                  <strong>تحديثات الحجوزات</strong>، و (حسب استخدام الميزة داخل شاشات الجلسات/المواعيد).
+                </p>
+
+                <ol>
+                  <li>من أول استخدام قد يُطلب إذن الإشعارات.</li>
+                  <li>إذا عطّلت الإشعارات من النظام:
+                    <ul>
+                      <li>افتح إعدادات الهاتف &gt; التطبيقات &gt; Infinite Aura &gt; الإشعارات وأعد تفعيلها.</li>
+                    </ul>
+                  </li>
+                </ol>
+
+                <details>
+                  <summary>فتح إعدادات إشعارات التطبيق مباشرة</summary>
+                  <div class="hr"></div>
+                  <p class="muted">
+                    يوجد دعم برمجي لفتح شاشة إعدادات إشعارات التطبيق من داخل النظام (خصوصاً Android).
+                  </p>
+                </details>
+              </div>
+            </details>
+
+            <details class="policy-sec" id="s13">
+              <summary><span class="title">13) حلول سريعة ودعم</span></summary>
+              <div class="sec-body">
+                <h3>مشاكل شائعة وحلولها</h3>
+                <ul>
+                  <li><strong>OTP لا يصل:</strong> تحقق من Spam، واستخدم آخر كود، وتأكد من صحة البريد.</li>
+                  <li><strong>الحجز لا يظهر عند ولي الأمر: </strong> حدّث الشاشة وتأكد من تسجيل الدخول، وانتظر مزامنة النسخة.</li>
+                  <li><strong>رابط خرائط غير صحيح:</strong> استخدم زر الموقع لتوليد رابط تلقائي أو الصق رابط http/https صالح.</li>
+                  <li><strong>لا تصل إشعارات:</strong> فعّل إذن الإشعارات من النظام ثم افتح التطبيق مجدداً.</li>
+                </ul>
+
+                <div class="callout">
+                  <strong>التواصل</strong>
+                  <p class="muted" style="margin:0">
+                    بريد الدعم/الخصوصية: <strong>app.asd.cure@gmail.com</strong><br/>
+                    (ضع عنوان الرسالة حسب الطلب: Support / Booking / Account / Verification)
+                  </p>
+                </div>
+              </div>
+            </details>
+
+            <!-- ===================== END MANUAL SECTIONS ===================== -->
+
+          </div>
+        </article>
+      </main>
+    </div>
+
+    <div class="footer">
+      <strong>ملاحظة:</strong>
+      <p class="muted" style="margin-top:8px">
+        تم كتابة هذا الدليل ليطابق مسارات الاستخدام الموجودة في المشروع (شاشات التسجيل/الدخول مع OTP، دليل المراكز والحجوزات، إدارة حجوزات المركز، نشر صفحة المركز العامة، الأداء، والأرشفة).
+      </p>
+      <p class="muted" style="margin:0">
+        © <span id="year"></span> <strong>Infinite Aura</strong>. جميع الحقوق محفوظة.
+      </p>
+    </div>
+  </div>
+
+<script>
+  // Dynamic year
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Sections only
+  const policyDetails = Array.from(document.querySelectorAll("details.policy-sec"));
+
+  function toggleAll(open){
+    policyDetails.forEach(d => d.open = !!open);
+  }
+
+  // Accordion: opening one closes the others
+  let allowMultipleOpen = false;
+  policyDetails.forEach(d => {
+    d.addEventListener("toggle", () => {
+      if (!d.open) return;
+      if (allowMultipleOpen) return;
+      policyDetails.forEach(other => {
+        if (other !== d) other.open = false;
+      });
+    });
+  });
+
+  const _toggleAll = toggleAll;
+  toggleAll = function(open){
+    allowMultipleOpen = true;
+    _toggleAll(open);
+    setTimeout(() => { allowMultipleOpen = false; }, 0);
+  };
+
+  // Highlight active TOC link
+  const tocLinksDesktop = Array.from(document.querySelectorAll("#toc a"));
+  const tocLinksMobile = Array.from(document.querySelectorAll("#tocMobile a"));
+  const allLinks = [...tocLinksDesktop, ...tocLinksMobile];
+  const linkMap = new Map(allLinks.map(a => [a.getAttribute("href"), a]));
+
+  function setActive(id){
+    allLinks.forEach(a => a.classList.remove("active"));
+    const a = linkMap.get("#" + id);
+    if(a) a.classList.add("active");
+    tocLinksDesktop.forEach(x => { if(x.getAttribute("href")==="#" + id) x.classList.add("active"); });
+    tocLinksMobile.forEach(x => { if(x.getAttribute("href")==="#" + id) x.classList.add("active"); });
+  }
+
+  // If a TOC link is clicked: open the section before scrolling
+  allLinks.forEach(a => {
+    a.addEventListener("click", () => {
+      const href = a.getAttribute("href");
+      if(!href || !href.startsWith("#")) return;
+      const id = href.slice(1);
+      const target = document.getElementById(id);
+      if(target && target.matches("details.policy-sec")){
+        target.open = true;
+      }
+    });
+  });
+
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting) return;
+      setActive(e.target.id);
+    });
+  }, { rootMargin: "-45% 0px -50% 0px", threshold: 0.01 });
+
+  policyDetails.forEach(d => observer.observe(d));
+
+  // Close mobile TOC after click
+  document.querySelectorAll("#tocMobile a").forEach(a=>{
+    a.addEventListener("click", ()=>{
+      const details = document.querySelector("details.tocMobile");
+      if(details) details.open = false;
+    });
+  });
+</script>
+
+</body>
+</html>
